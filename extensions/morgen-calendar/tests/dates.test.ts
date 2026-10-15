@@ -21,3 +21,21 @@ test("validates zone and duration values", () => {
   assert.equal(durationMinutes("PT1H30M"), 90);
   assert.throws(() => isoDuration(0));
 });
+
+// macOS and Windows both expose the system zone through Intl. Exercise offsets
+// on either side of UTC and DST without relying on the developer machine's zone.
+for (const [zone, instant, local] of [
+  ["America/Los_Angeles", "2026-01-15T02:30:00Z", "2026-01-14T18:30:00"],
+  ["America/Los_Angeles", "2026-07-15T02:30:00Z", "2026-07-14T19:30:00"],
+  ["Europe/London", "2026-07-15T23:30:00Z", "2026-07-16T00:30:00"],
+  ["Asia/Kolkata", "2026-01-15T02:30:00Z", "2026-01-15T08:00:00"],
+]) {
+  test(`event times round-trip in ${zone} at ${instant}`, () => {
+    assert.equal(toLocalDateTime(new Date(instant), zone), local);
+    const event = {
+      id: "e", accountId: "a", calendarId: "c", title: "Event",
+      start: local, timeZone: zone, duration: "PT1H", showWithoutTime: false,
+    };
+    assert.equal(eventStartDate(event).toISOString(), new Date(instant).toISOString());
+  });
+}

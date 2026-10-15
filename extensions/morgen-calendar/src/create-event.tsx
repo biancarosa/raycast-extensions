@@ -99,7 +99,7 @@ export default function CreateEvent() {
           ))}
         </Form.Dropdown>
       )}
-      <Form.Description text={`Timed events use your Windows time zone: ${systemTimeZone()}.`} />
+      <Form.Description text={`Timed events use your system time zone: ${systemTimeZone()}.`} />
       <Form.TextArea id="description" title="Description" placeholder="Optional details" />
     </Form>
   );

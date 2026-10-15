@@ -1,6 +1,6 @@
 # Morgen Calendar for Raycast
 
-Create and manage calendar events and native Morgen tasks from Raycast on Windows.
+Create and manage calendar events and native Morgen tasks from Raycast on macOS and Windows.
 
 ## Setup
 
@@ -33,11 +33,11 @@ npm run build
 npm run bundle
 ```
 
-This extension uses the Morgen REST API and no native macOS APIs. It declares Windows as its supported platform.
+This extension uses the Morgen REST API and cross-platform Raycast components on macOS and Windows. Timed events and task due dates use your system time zone.
 
 ## Compatibility
 
-Requires Raycast v2.5 or later on Windows. The API dependency is pinned to the released version `2.5.2`, which was verified with the Windows client. View Events shows edit and delete actions only when the calendar permits modifying that event.
+Requires Raycast v2.5 or later on macOS or Windows. The API dependency is pinned to the released version `2.5.2`, which was verified with the Windows client. View Events shows edit and delete actions only when the calendar permits modifying that event.
 
 ## References
 
